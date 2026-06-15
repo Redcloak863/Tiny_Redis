@@ -1,6 +1,7 @@
 # Write your solution here
 import socket  # The TCP server
 import sys
+import bulk_string
 
 # server_socket = socket.socket()
 host = '0.0.0.0'
@@ -8,9 +9,9 @@ port = 6379  # The Redis default port.
 
 
 pong = '+PONG\r\n'.encode()  # The standard Redis 'PONG' response in bytes.
-error_string = '-Unknown command!\r\n'.encode()
+error_string = '-Parsing error!\r\n'.encode()
 
-if __name__ == "__main__":
+def main():
     # Call your server handling logic here
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
 
@@ -40,3 +41,6 @@ if __name__ == "__main__":
                         conn.send(error_string)
                         # print(f'Sent {error_string}.')
                     # At this point, the loop should begin again looking for a new connection
+
+if __name__ == "__main__":
+    main()
